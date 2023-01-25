@@ -81,6 +81,9 @@ class SensorThingsNetworkReplyPromise(QObject):
         # no cache
         request.setAttribute(QNetworkRequest.CacheLoadControlAttribute, QNetworkRequest.AlwaysNetwork)
         request.setAttribute(QNetworkRequest.CacheSaveControlAttribute, False)
+
+        # follow redirect
+        request.setAttribute(QNetworkRequest.FollowRedirectsAttribute, True)
         
         # send request 
         reply = self._nam.get(request)
