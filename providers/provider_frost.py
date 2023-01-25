@@ -336,6 +336,8 @@ class FrostProvider(QgsVectorDataProvider):
             url = FrostProvider.correctQurlParams(url)
             nam = QgsNetworkAccessManager.instance()
             next_url = url.toString()
+            print("next_url:")
+            print(next_url)
             
             # create request
             request = QNetworkRequest(QUrl(next_url))
@@ -352,6 +354,9 @@ class FrostProvider(QgsVectorDataProvider):
             while next_url:
                 # create request
                 request.setUrl(QUrl(next_url))
+
+                print("request:")
+                print(request)
                 
                 # send request 
                 #reply = nam.blockingGet(request)
