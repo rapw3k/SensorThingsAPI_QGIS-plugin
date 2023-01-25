@@ -306,6 +306,8 @@ class FrostProvider(QgsVectorDataProvider):
         request.setAttribute(QNetworkRequest.HttpPipeliningAllowedAttribute, True)
         request.setAttribute(QNetworkRequest.CacheLoadControlAttribute, QNetworkRequest.AlwaysNetwork)
         request.setAttribute(QNetworkRequest.CacheSaveControlAttribute, False)
+        # follow redirect
+        request.setAttribute(QNetworkRequest.FollowRedirectsAttribute, True)
         reply = nam.blockingGet(request)
             
         # check if error
@@ -343,6 +345,9 @@ class FrostProvider(QgsVectorDataProvider):
             request.setAttribute(QNetworkRequest.CacheLoadControlAttribute, QNetworkRequest.AlwaysNetwork)
             request.setAttribute(QNetworkRequest.CacheSaveControlAttribute, False)
             
+            # follow redirect
+            request.setAttribute(QNetworkRequest.FollowRedirectsAttribute, True)
+
             # loop all page request
             while next_url:
                 # create request

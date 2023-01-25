@@ -179,6 +179,9 @@ class SensorThingsNetworkAccessManager(QNetworkAccessManager):
         # no cache
         request.setAttribute(QNetworkRequest.CacheLoadControlAttribute, QNetworkRequest.AlwaysNetwork)
         request.setAttribute(QNetworkRequest.CacheSaveControlAttribute, False)
+
+        # follow redirect
+        request.setAttribute(QNetworkRequest.FollowRedirectsAttribute, True)
         
         # debug
         if __PLG_DEBUG__:
