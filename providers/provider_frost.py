@@ -336,8 +336,6 @@ class FrostProvider(QgsVectorDataProvider):
             url = FrostProvider.correctQurlParams(url)
             nam = QgsNetworkAccessManager.instance()
             next_url = url.toString()
-            print("next_url:")
-            print(next_url)
             
             # create request
             request = QNetworkRequest(QUrl(next_url))
@@ -354,9 +352,6 @@ class FrostProvider(QgsVectorDataProvider):
             while next_url:
                 # create request
                 request.setUrl(QUrl(next_url))
-
-                print("request:")
-                print(request)
                 
                 # send request 
                 #reply = nam.blockingGet(request)
@@ -367,7 +362,7 @@ class FrostProvider(QgsVectorDataProvider):
                 
                 # check if error
                 if reply.error() != QNetworkReply.NoError:
-                    raise Exception(reply.errorString())
+                    raise Exception(reply.errorString()+" request: "+request.url().toString())
                     
                 status_code = reply.attribute(QNetworkRequest.HttpStatusCodeAttribute)
                 if status_code != 200:
