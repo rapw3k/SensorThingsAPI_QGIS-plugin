@@ -308,6 +308,9 @@ class FrostProvider(QgsVectorDataProvider):
         request.setAttribute(QNetworkRequest.CacheSaveControlAttribute, False)
         # follow redirect
         request.setAttribute(QNetworkRequest.FollowRedirectsAttribute, True)
+        # accept header
+        request.setRawHeader(b'Accept', b'application/json')
+        
         reply = nam.blockingGet(request)
             
         # check if error
@@ -347,6 +350,8 @@ class FrostProvider(QgsVectorDataProvider):
             
             # follow redirect
             request.setAttribute(QNetworkRequest.FollowRedirectsAttribute, True)
+            # accept header
+            request.setRawHeader(b'Accept', b'application/json')
 
             # loop all page request
             while next_url:

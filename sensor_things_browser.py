@@ -84,6 +84,8 @@ class SensorThingsNetworkReplyPromise(QObject):
 
         # follow redirect
         request.setAttribute(QNetworkRequest.FollowRedirectsAttribute, True)
+        # accept header
+        request.setRawHeader(b'Accept', b'application/json')
         
         # send request 
         reply = self._nam.get(request)
@@ -182,6 +184,8 @@ class SensorThingsNetworkAccessManager(QNetworkAccessManager):
 
         # follow redirect
         request.setAttribute(QNetworkRequest.FollowRedirectsAttribute, True)
+        # accept header
+        request.setRawHeader(b'Accept', b'application/json')
         
         # debug
         if __PLG_DEBUG__:
