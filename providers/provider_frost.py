@@ -284,7 +284,9 @@ class FrostProvider(QgsVectorDataProvider):
         url = QUrl(url)
         query = QUrlQuery(url.query())
         if not query.hasQueryItem('$top'):
-            query.addQueryItem('$top', '2147483647')
+            query.addQueryItem('$top', '10000') 
+            # Virtuoso 22023 Error SR353: Sorted TOP clause specifies more then 2147483647 rows to sort. Only 10000 are allowed.
+            # query.addQueryItem('$top', '2147483647')
         if not query.hasQueryItem('$orderby'):
             query.addQueryItem('$orderby', '@iot.id+asc')
         url.setQuery(query)
